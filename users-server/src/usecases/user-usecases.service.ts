@@ -5,7 +5,7 @@ import {User} from "../domain/model/user";
 import {I_EXCEPTION_TOKEN, IException} from "../domain/exceptions/exceptions.interface";
 
 @Injectable()
-export class AuthUsecases {
+export class UserUsecases {
     constructor(
         @Inject(ILOGGER_TOCKEN)
         private readonly logger: ILogger,

@@ -1,14 +1,14 @@
 import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import {ApiOkResponse} from "@nestjs/swagger";
-import {AuthUsecases} from "../../../usecases/auth.usecases";
+import {UserUsecases} from "../../../usecases/user-usecases.service";
 import {User} from "../../../domain/model/user";
 import {UserPresenter} from "./presenters/user.presenter";
 import {LoginDTO} from "./dtos/login.dto";
 
 @Controller('auth')
-export class AuthController {
+export class UserController {
 
-  constructor(private readonly authUsecases: AuthUsecases) {}
+  constructor(private readonly authUsecases: UserUsecases) {}
 
   @Post('login')
   @ApiOkResponse({type: UserPresenter, isArray: true})

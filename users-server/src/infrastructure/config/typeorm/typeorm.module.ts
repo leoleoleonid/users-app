@@ -5,16 +5,11 @@ import {EnvironmentConfigModule} from "../environment-config/environment-config.
 
 export const getTypeOrmModuleOptions = (config: EnvironmentConfigService): TypeOrmModuleOptions =>
     ({
-        type: 'postgres',
-        host: config.getDatabaseHost(),
-        port: config.getDatabasePort(),
-        username: config.getDatabaseUser(),
-        password: config.getDatabasePassword(),
-        database: config.getDatabaseName(),
+        type: 'mongodb',
+        url: config.getDatabaseURL(),
         autoLoadEntities: true,
         synchronize: config.getDatabaseSync(),
     } as TypeOrmModuleOptions);
-
 
 @Module({
     imports: [
