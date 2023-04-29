@@ -1,16 +1,36 @@
-import {Entity, Column, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
-import {AddressSubscriptionEntity} from "./addressSubscription.entity";
-
-@Entity()
+import {Entity, Column, ObjectIdColumn} from 'typeorm';
+import {Role, User} from "../../domain/model/user";
+import { ObjectID } from 'mongodb';
+@Entity('users')
 export class UserEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
+  static create(partialUser: Omit<User, '_id'>): UserEntity {
+    const userE = Object.assign(new UserEntity(), partialUser);
+    userE._id = new ObjectID();
+    return userE;
+  }
+
+  @ObjectIdColumn()
+  _id: ObjectID;
 
   @Column()
-  username: string;
+  name: string;
 
-  // @OneToMany(() => AddressSubscriptionEntity, (addressSubscription) => addressSubscription.userId)
-  // addressSubscriptions: AddressSubscriptionEntity[]
-  @OneToMany(() => AddressSubscriptionEntity, (addressSubscription) => addressSubscription.user)
-  addressSubscriptions: AddressSubscriptionEntity[];
+  @Column()
+  email: string;
+
+  @Column()
+  address: string;
+
+  @Column()
+  acl: Role;
+
+  @Column()
+  homeLocation: {
+    lat: number,
+    lng: number
+  }
+
+  userFromEntity(): User {
+    return Object.assign(new User(), this);
+  }
 }

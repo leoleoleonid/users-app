@@ -15,24 +15,24 @@ export class UserUsecases {
         private readonly exceptionService: IException
     ) {}
 
-    async login(username: string): Promise<User> {
-        let user: User = await this.userRepository.findByName(username)
-        if (!user) {
-            this.logger.log('Create new user', `Username : ${username}`)
-            await this.userRepository.insert(username);
-            user = await this.userRepository.findByName(username);
-        }
-        this.logger.log('Auth login', `Username : ${username}`)
-        return user;
+    async create(user: Omit<User, '_id'>): Promise<User> {
+        return await this.userRepository.create(user);
     }
 
-    async getUserById(userId:number) :  Promise<User> {
-        let user: User = await this.userRepository.findById(userId)
-        if (!user) {
-            this.logger.error('No such user', `userId : ${userId}`)
-            this.exceptionService.UnauthorizedException();
-        }
-        this.logger.log('Authenticated', `userId : ${userId}`)
-        return user;
+    async findAll(): Promise<User[]> {
+        return await this.userRepository.findAll();
+    }
+
+    async findOne(id: string): Promise<User> {
+        return await this.userRepository.find(id);
+    }
+
+    async update(id: string, user: Partial<User>): Promise<User> {
+        await this.userRepository.update(id, user);
+        return await this.userRepository.find(id);
+    }
+
+    async delete(id: string): Promise<void> {
+        await this.userRepository.delete(id);
     }
 }

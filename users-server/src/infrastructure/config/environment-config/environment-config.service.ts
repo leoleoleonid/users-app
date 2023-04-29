@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 export class EnvironmentConfigService {
     constructor(private configService: ConfigService) {}
     getDatabaseURL(): string {
-        return this.configService.get<string>('DB_URI');
+        return this.configService.get<string>('DB_URL');
     }
 
     getDatabaseSync(): boolean {
