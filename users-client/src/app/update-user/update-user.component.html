@@ -1,35 +1,38 @@
 <div>
   <form [formGroup]="updateUserForm" (ngSubmit)="onSubmit()">
-  <div class="form-group">
-    <label for="user-id">Select User ID</label>
-    <select id="user-id" class="form-control" formControlName="userId">
-      <option *ngFor="let user of users" [value]="user._id">{{ user._id }}</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="user-name">Name</label>
-    <input id="user-name" class="form-control" type="text" formControlName="name">
-  </div>
-  <div class="form-group">
-    <label for="user-email">Email</label>
-    <input id="user-email" class="form-control" type="email" formControlName="email">
-  </div>
-  <div class="form-group">
-    <label for="user-address">Address</label>
-    <input id="user-address" class="form-control" type="text" formControlName="address">
-  </div>
-  <div class="form-group">
-    <label for="user-acl">ACL</label>
-    <input id="user-acl" class="form-control" type="text" formControlName="acl">
-  </div>
-  <div class="form-group">
-    <label for="user-lat">Home Location Lat</label>
-    <input id="user-lat" class="form-control" type="number" step="any" formControlName="lat">
-  </div>
-  <div class="form-group">
-    <label for="user-lng">Home Location Lng</label>
-    <input id="user-lng" class="form-control" type="number" step="any" formControlName="lng">
-  </div>
-  <button type="submit" class="btn btn-primary">Update User</button>
+    <div class="form-group">
+      <label for="user-id">Select User ID</label>
+      <select id="user-id" class="form-control form-select" formControlName="userId">
+        <option *ngFor="let user of users" [value]="user._id">{{ user._id }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="user-name">Name</label>
+      <input id="user-name" class="form-control" type="text" formControlName="name">
+    </div>
+    <div class="form-group">
+      <label for="user-email">Email</label>
+      <input id="user-email" class="form-control" type="email" formControlName="email">
+    </div>
+    <div class="form-group">
+      <label for="user-address">Address</label>
+      <input id="user-address" class="form-control" type="text" formControlName="address">
+    </div>
+    <div class="form-group">
+      <label for="user-acl">ACL</label>
+      <select id="user-acl" class="form-control form-select" formControlName="acl" aria-label="Default select example">
+        <option *ngFor="let role of acl" [value]="role">{{role}}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="user-lat">Home Location Lat</label>
+      <input id="user-lat" class="form-control" type="number" step="any" formControlName="lat">
+    </div>
+    <div class="form-group">
+      <label for="user-lng">Home Location Lng</label>
+      <input id="user-lng" class="form-control" type="number" step="any" formControlName="lng">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary">Update User</button>
 </form>
 </div>

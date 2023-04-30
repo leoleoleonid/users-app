@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../_services/user.service';
-import {User} from "../_services/user.interface";
+import {ACL, User} from "../_services/user.interface";
 
 @Component({
   selector: 'app-create-user',
@@ -11,6 +11,7 @@ import {User} from "../_services/user.interface";
 export class CreateUserComponent implements OnInit {
 
   createUserForm!: FormGroup;
+  acl: ACL[] | string[] = ['', ACL.USER, ACL.ADMIN, ACL.MANAGER];
 
   constructor(
     private formBuilder: FormBuilder,

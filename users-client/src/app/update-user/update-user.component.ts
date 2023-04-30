@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../_services/user.service';
-import {User} from "../_services/user.interface";
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {UserService} from '../_services/user.service';
+import {ACL, User} from "../_services/user.interface";
 
 @Component({
   selector: 'app-update-user',
@@ -12,21 +12,23 @@ export class UpdateUserComponent implements OnInit {
 
   updateUserForm!: FormGroup;
   users!: User[];
+  acl: ACL[] | string[] = ['', ACL.USER, ACL.ADMIN, ACL.MANAGER];
 
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.updateUserForm = this.formBuilder.group({
       userId: ['', Validators.required],
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      address: ['', Validators.required],
-      acl: ['', Validators.required],
-      lat: ['', Validators.required],
-      lng: ['', Validators.required],
+      name: [''],
+      email: ['', [Validators.email]],
+      address: [''],
+      acl: [''],
+      lat: ['', [Validators.min(-90), Validators.max(90)]],
+      lng: ['', [Validators.min(-180), Validators.max(180)]],
     });
 
     this.userService.getUsers().subscribe(users => {
@@ -35,6 +37,11 @@ export class UpdateUserComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.updateUserForm.value)
+    if(this.updateUserForm.invalid) {
+      alert('FORM IS INVALID!!!')
+      return;
+    }
     const userId = this.updateUserForm.get('userId')!.value;
     const user = {...this.updateUserForm.value};
     const lat = user.lat;

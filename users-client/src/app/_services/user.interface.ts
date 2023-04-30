@@ -1,3 +1,9 @@
+
+export enum ACL {
+  USER = "USER",
+  ADMIN = "ADMIN",
+  MANAGER = "MANAGER",
+}
 export interface User {
   _id?: number;
   name: string;
