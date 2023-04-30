@@ -30,10 +30,26 @@ export class CreateUserDTO implements Omit<User, '_id'> {
   @ApiProperty({required: true, enum: Role})
   acl: Role;
 
-  @ValidateNested({each: true})
+  @ValidateNested()
   @ApiProperty({required: true, type: HomeLocation })
   @Type(() => HomeLocation)
   homeLocation: HomeLocation;
 }
 
-export class UpdatePetDto extends PartialType(CreateUserDTO) {}
+
+class HomeLocationUpdate extends PartialType(HomeLocation){
+  @IsNumber()
+  @ApiProperty({required: false})
+  lat: number;
+
+  @IsNumber()
+  @ApiProperty({required: false})
+  lng: number;
+}
+
+export class UpdatePetDto extends PartialType(CreateUserDTO) {
+  @ValidateNested()
+  @ApiProperty({required: false, type: HomeLocationUpdate })
+  @Type(() => HomeLocationUpdate)
+  homeLocation: HomeLocationUpdate;
+}

@@ -28,6 +28,7 @@ export class UserUsecases {
     }
 
     async update(id: string, user: Partial<User>): Promise<User> {
+        console.log('user', user)
         await this.userRepository.update(id, user);
         return await this.userRepository.find(id);
     }
