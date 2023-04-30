@@ -9,8 +9,6 @@ RUN npm i  --legacy-peer-deps
 
 COPY --chown=node:node . .
 
-#USER node
-
 FROM node:18 As build
 
 WORKDIR /usr/src/app

@@ -1,9 +1,9 @@
 run dev
 ```bash
-docker-compose --env-file=./packages/backend/.env  up --build
+docker-compose --env-file=./users-server/.env  up --build
 ```
 
-run prod (only to test locally and build prod images)
+run prod (only to build prod images)
 ```bash
-docker-compose -f ./docker-compose.prod.yml --env-file=./packages/backend/.env  up -V --build
+docker-compose -f ./docker-compose.prod.yml --env-file=./users-server/.env  up -V --build
 ```
