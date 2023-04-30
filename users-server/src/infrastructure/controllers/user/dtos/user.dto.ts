@@ -1,4 +1,4 @@
-import {IsString, IsEnum, ValidateNested, IsNumber} from 'class-validator';
+import {IsString, IsEnum, ValidateNested, IsNumber, Min, Max} from 'class-validator';
 import {ApiProperty} from "@nestjs/swagger";
 import {Role, User} from "../../../../domain/model/user";
 import { PartialType } from '@nestjs/mapped-types';
@@ -6,10 +6,14 @@ import {Type} from "class-transformer";
 
 class HomeLocation {
   @IsNumber()
+  @Min(-90)
+  @Max(90)
   @ApiProperty({required: true})
   lat: number;
 
   @IsNumber()
+  @Min(-180)
+  @Max(180)
   @ApiProperty({required: true})
   lng: number;
 }
