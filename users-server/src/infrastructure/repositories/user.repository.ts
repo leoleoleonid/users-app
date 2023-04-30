@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import {Repository, MongoRepository} from 'typeorm';
-import { ObjectID } from 'mongodb';
+import { MongoRepository} from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 import {UserRepositoryInterface} from "../../domain/repositories/user.repository.interface";
 import {User} from "../../domain/model/user";
@@ -21,7 +21,7 @@ export class UserRepository implements UserRepositoryInterface {
   }
 
   async update(id: string, user: Partial<User>): Promise<User> {
-    const criteria = {_id: new ObjectID(id)};
+    const criteria = {_id: new ObjectId(id)};
     const homeLocation = {...user.homeLocation};
     if (homeLocation.lat) {
       user["homeLocation.lat"] = homeLocation.lat;
@@ -37,7 +37,7 @@ export class UserRepository implements UserRepositoryInterface {
   }
 
   async find(id: string): Promise<User> {
-    const criteria = {_id: new ObjectID(id)};
+    const criteria = {_id: new ObjectId(id)};
     const userE = await this.userEntityRepository.findOneBy(criteria);
     return userE.userFromEntity();
   }
@@ -47,7 +47,7 @@ export class UserRepository implements UserRepositoryInterface {
   }
 
   async delete(id: string): Promise<void> {
-    const criteria = {_id: new ObjectID(id)};
+    const criteria = {_id: new ObjectId(id)};
     await this.userEntityRepository.delete(criteria);
   }
 }

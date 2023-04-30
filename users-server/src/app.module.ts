@@ -1,5 +1,4 @@
 import {Module} from '@nestjs/common';
-import {CommandModule} from 'nestjs-command';
 import {LoggerModule} from './infrastructure/logger/logger.module';
 import {ExceptionsModule} from './infrastructure/exceptions/exceptions.module';
 import {ConfigModule} from "@nestjs/config";
@@ -16,7 +15,6 @@ import {TypeOrmConfigModule} from "./infrastructure/config/typeorm/typeorm.modul
         }),
         TypeOrmConfigModule,
         ControllersModule,
-        CommandModule,
         LoggerModule,
         ExceptionsModule,
     ],

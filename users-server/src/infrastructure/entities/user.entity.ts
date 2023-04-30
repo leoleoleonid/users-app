@@ -1,16 +1,16 @@
 import {Entity, Column, ObjectIdColumn} from 'typeorm';
 import {Role, User} from "../../domain/model/user";
-import { ObjectID } from 'mongodb';
+import { ObjectId } from 'mongodb';
 @Entity('users')
 export class UserEntity {
   static create(partialUser: Omit<User, '_id'>): UserEntity {
     const userE = Object.assign(new UserEntity(), partialUser);
-    userE._id = new ObjectID();
+    userE._id = new ObjectId();
     return userE;
   }
 
   @ObjectIdColumn()
-  _id: ObjectID;
+  _id: ObjectId;
 
   @Column()
   name: string;
