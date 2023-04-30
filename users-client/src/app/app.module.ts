@@ -10,7 +10,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
 import {UserService} from "./_services/user.service";
 import {CreateUserComponent} from "./create-user/create-user.component";
-import {CreateUpdateUserComponent} from "./create-update-user/create-update-user.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import { UpdateUserComponent } from './update-user/update-user.component';
 
@@ -19,7 +18,6 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     AppComponent,
     NavigationComponent,
     UsersListComponent,
-    CreateUpdateUserComponent,
     UsersMapComponent,
     CreateUserComponent,
     UpdateUserComponent
